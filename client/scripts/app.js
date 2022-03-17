@@ -22,7 +22,7 @@ var App = {
 
     // Poll for new messages every 3 sec
     setInterval(App.fetch, 3000);
-      },
+  },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
@@ -31,11 +31,11 @@ var App = {
       if (data && data.length) {
         Rooms.update(data, RoomsView.render);
         Messages.update(data, MessagesView.render);
- 
+
         callback();
       }
       return;
-      
+
           });
   },
 
