@@ -1,6 +1,8 @@
 /* You'll need to have MySQL running and your Node server running
  * for these tests to pass. */
 
+
+
 const mysql = require('mysql2');
 const axios = require('axios');
 
@@ -8,15 +10,15 @@ const API_URL = 'http://127.0.0.1:3000/classes';
 
 describe('Persistent Node Chat Server', () => {
   const dbConnection = mysql.createConnection({
-    user: 'student',
-    password: 'student',
+    user: 'root',
+    password: '',
     database: 'chat',
   });
 
   beforeAll((done) => {
     dbConnection.connect();
 
-       const tablename = ''; // TODO: fill this out
+    const tablename = ''; // TODO: fill this out
 
     /* Empty the db table before all tests so that multiple tests
      * (or repeated runs of the tests)  will not fail when they should be passing

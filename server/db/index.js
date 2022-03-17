@@ -1,3 +1,5 @@
+//server/db/index.js uses the mysql npm module to connect to the database server running on your computer
+
 var mysql = require('mysql2');
 
 // Create a database connection and export it from this file.
