@@ -1,6 +1,6 @@
 var db = require('../db');
 
 module.exports = {
-  getAll: function () {},
+  getAll: function () {console.log('fdsfas');},
   create: function () {}
 };
