@@ -11,28 +11,32 @@ let callBackFn = (err, result)=>{
 
 module.exports = {
   get: function (req, res) {
-    models.messages.getAll((err, result) => {
-      if (err) {
-        res.status(404).send();
-      } else {
-        console.log(result);
-        // res.status(200).send()
-        res.status(200).send(JSON.stringify(result));
-      }
-      res.end();
-    });
-  }, // a function which handles a get request for all messages, use whats in the model as part of the request
+    new Promise ((resolve, reject) => {
+      models.messages.getAll((err, result) => {
+       if (err) {
+         reject(err);
+       } else {
+         resolve(result);
+       }
+    })
+    }).then((result) => {res.status(200).send(result); })
+    .catch((error) => {res.send(error); });
+  },
+  // a function which handles a get request for all messages, use whats in the model as part of the request
   post: function (req, res) { // a function which handles posting a message to the database
     // console.log(' in here line 15', req);
     var body = '';
-    req.on('data', (chunk) => {
-      body += chunk;
-    }).on('end', () => {
-      // console.log('line 20 BODY', body);
-      // console.log('typeof body', typeof(body));
-      models.messages.create(JSON.parse(body), callBackFn);
-    });
-    res.status(201).end();
+    console.log('got the request', req.body)
+      new Promise ((resolve, reject) => {
+        models.messages.create(req.body, (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        });
+      }).then((result) => {res.status(201).send(result); })
+      .catch((error) => {res.send(error); })
   }
 };
 

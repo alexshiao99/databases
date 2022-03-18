@@ -4,21 +4,21 @@ USE chat;
 
 CREATE TABLE users (
   /* Describe your table here.*/
-  username_id INT NOT NULL,
+  username_id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(30) NOT NULL,
   PRIMARY KEY (username_id)
 );
 
 CREATE TABLE rooms (
   /* Describe your table here.*/
-  roomname_id INT NOT NULL,
+  roomname_id INT NOT NULL AUTO_INCREMENT,
   roomname VARCHAR(30) NOT NULL,
   PRIMARY KEY(roomname_id)
 );
 
 CREATE TABLE messages (
   /* Describe your table here.*/
-  messages_id INT NOT NULL,
+  messages_id INT NOT NULL AUTO_INCREMENT,
   message_body VARCHAR(255) NOT NULL,
   username_id INT NOT NULL,
   roomname_id INT NOT NULL,

@@ -3,7 +3,7 @@ var db = require('../db/');
 module.exports = {
   getAll: function (callback) {
     console.log('getAll called models/messages.js line 5');
-    db.connection.query(`SELECT messages.messages_id, messages.message_body, users.username, rooms.roomname
+    db.connection.query(`SELECT messages.message_id, messages.text, users.username, rooms.roomname
     FROM users
     INNER JOIN messages
     INNER JOIN rooms
@@ -12,7 +12,7 @@ module.exports = {
   }, // a function which produces all the messages, connect to db
   create: function (message, callback) {
     let username = message['username'];
-    let messageBody = message.message_body;
+    let messageBody = message.text;
     let roomname = message.roomname;
     // db.connection.query('INSERT INTO users VALUES (NULL , "' + username + '")');
     db.connection.query(`INSERT IGNORE INTO users VALUES (NULL , "${username}")`, callback);
